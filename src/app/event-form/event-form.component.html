@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>Create New Event</h2>
+<div mat-dialog-content>
+    <form style="justify-items: center; padding: 20px;">
+        <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Name of Event</mat-label>
+            <input matInput [(ngModel)]="event.eventName" name="eventName" placeholder="Enter Event Name" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Event Type</mat-label>
+            <input matInput [(ngModel)]="event.eventType" name="eventType" placeholder="Eg. Festival, Religional Festival" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Description</mat-label>
+            <input matInput name="desc" [(ngModel)]="event.desc" required placeholder="Event Description"/>
+        </mat-form-field>
+        
+         <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Event date</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="event.date" name="date" placeholder="Event Date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions style="margin-bottom: 20px; margin-left: 20px;">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" [disabled]="!event.eventName || !event.eventType || !event.desc || !event.date" (click)="onSubmit()">Save</button>
+</div>
