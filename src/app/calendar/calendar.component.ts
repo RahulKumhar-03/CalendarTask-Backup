@@ -41,6 +41,11 @@ export class CalendarComponent implements OnInit {
     } else {
       this.filteredDays = this.days
     }
+    if (this.calendarView === 'Week') {
+      this.generateWeekDates();
+    } else {
+      this.generateMonthDates();
+    }
   }
   loadEvents(){
     this.eventService.getAllEvents().subscribe({
@@ -60,18 +65,43 @@ export class CalendarComponent implements OnInit {
     
     const lastDateOfMonth = new Date(this.currentYear, this.currentMonth+1,0); //31 Aug
 
-    const startWeekDayOfMonth = startDateOfMonth.getDay();    
+    const startWeekDayOfMonth = startDateOfMonth.getDay();  
+    if (this.selectedValue === 'option2') {
+      for (let i = startWeekDayOfMonth - 1; i >= 0; i--) {
+        const date = new Date(this.currentYear, this.currentMonth, -i);
+        if (date.getDay() !== 0 && date.getDay() !== 6) {
+          dates.push(date);
+        }
+      }
+
+      for (let i = startDateOfMonth.getDate(); i <= lastDateOfMonth.getDate(); i++) {
+        const date = new Date(this.currentYear, this.currentMonth, i);
+        if (date.getDay() !== 0 && date.getDay() !== 6) {
+          dates.push(date);
+        }
+      }
+
+      let nextDay = 1;
+      while (dates.length < 30) {
+        const date = new Date(this.currentYear, this.currentMonth + 1, nextDay);
+        if (date.getDay() !== 0 && date.getDay() !== 6) {
+          dates.push(date);
+        }
+        nextDay++;
+      }
+    } else { 
     
-    for(let i=startWeekDayOfMonth-1; i>=0; i--){
-      dates.push(new Date(this.currentYear,this.currentMonth,-i))
-    }
+      for(let i=startWeekDayOfMonth-1; i>=0; i--){
+        dates.push(new Date(this.currentYear,this.currentMonth,-i))
+      }
 
-    for(let i=startDateOfMonth.getDate(); i<=lastDateOfMonth.getDate(); i++){
-      dates.push(new Date(this.currentYear, this.currentMonth,i))
-    }
+      for(let i=startDateOfMonth.getDate(); i<=lastDateOfMonth.getDate(); i++){
+        dates.push(new Date(this.currentYear, this.currentMonth,i))
+      }
 
-    for(let i=1; i<=6 - lastDateOfMonth.getDay(); i++){
-      dates.push(new Date(this.currentYear, this.currentMonth+1,i))
+      for(let i=1; i<=6 - lastDateOfMonth.getDay(); i++){
+        dates.push(new Date(this.currentYear, this.currentMonth+1,i))
+      }
     }
 
     this.monthDates = dates
@@ -82,10 +112,20 @@ export class CalendarComponent implements OnInit {
     const startdate = new Date(this.weekStartDate)
     startdate.setDate(this.weekStartDate.getDate() - this.weekStartDate.getDay())
 
-    for(let i=0; i<7; i++){
-      const start = new Date(startdate);
-      start.setDate(startdate.getDate() + i)
-      weekDates.push(start)      
+    if (this.selectedValue === 'option2') {
+      
+      for (let i = 1; i <= 5; i++) { 
+        const start = new Date(startdate);
+        start.setDate(startdate.getDate() + i);
+        weekDates.push(start);
+      }
+    } else {
+      
+      for (let i = 0; i < 7; i++) {
+        const start = new Date(startdate);
+        start.setDate(startdate.getDate() + i);
+        weekDates.push(start);
+      }
     }
     this.currentMonth = startdate.getMonth();
     this.currentYear = startdate.getFullYear();

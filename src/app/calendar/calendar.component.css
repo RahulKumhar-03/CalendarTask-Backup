@@ -29,3 +29,9 @@
 .week-view {
     height: 250px; 
 }
+.work-week-view{
+    display:grid; 
+    grid-template-columns: repeat(5,1fr); 
+    justify-items: center; 
+    padding: 1rem;
+}
