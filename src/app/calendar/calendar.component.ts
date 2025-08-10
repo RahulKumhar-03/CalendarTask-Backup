@@ -88,9 +88,7 @@ export class CalendarComponent implements OnInit {
       weekDates.push(start)      
     }
     this.currentMonth = startdate.getMonth();
-    this.currentYear = startdate.getFullYear()
-    console.log(startdate.toDateString());
-    
+    this.currentYear = startdate.getFullYear();
     this.monthDates = weekDates
   }
   previousMonth(){
@@ -155,10 +153,11 @@ export class CalendarComponent implements OnInit {
     if(this.calendarView === 'Month'){
       this.calendarView = 'Week';
       const todayMonth = new Date()
-      if(this.currentMonth === todayMonth.getMonth()){
-        this.weekStartDate = new Date(this.currentYear,todayMonth.getMonth(), todayMonth.getDate()) 
+      if(this.currentMonth === todayMonth.getMonth() && this.currentYear === todayMonth.getFullYear()){
+        this.weekStartDate = new Date(todayMonth) 
+      } else{
+        this.weekStartDate = new Date(this.currentYear, this.currentMonth, 1)
       }
-      this.weekStartDate = new Date(this.currentYear, this.currentMonth, 1)
       this.generateWeekDates();
     }
     else {
