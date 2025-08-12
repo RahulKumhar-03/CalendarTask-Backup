@@ -1,7 +1,10 @@
 <div style="padding: 50px;">
     <div id="cal-header" style="display: flex; justify-content: space-evenly; width: 100%;">
         <div style="padding-top: 15px;">
-            <button mat-stroked-button color="primary" (click)="openEventForm()">Add Event</button>
+            <button mat-stroked-button color="primary" (click)="openEventForm($event)">Add Event</button>
+            <mat-radio-group aria-label="Select an option">
+                <mat-radio-button value="List" (click)="openEventList()">Event List</mat-radio-button>
+            </mat-radio-group>
         </div>
         <div *ngIf="calendarView === 'Month'">
             <div style="gap: 20px; display: flex;padding-top: 15px; cursor: pointer;">
@@ -31,12 +34,12 @@
                 </mat-form-field>
         </div>
     </div>
-    <div style="display:grid; grid-template-columns: repeat(7,1fr); justify-items: center; padding: 1rem;">
+    <div [ngStyle]="{'display': 'grid', 'grid-template-columns': selectedValue === 'option2' ? 'repeat(5, 1fr)' : 'repeat(7, 1fr)', 'justify-items': 'center', 'padding': '1rem'}" >
         <div *ngFor="let day of filteredDays">
             <h3>{{day}}</h3>
         </div>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(7,1fr); grid-template-rows: repeat(6,1fr);"> 
+    <div [ngStyle]="{'display': 'grid', 'grid-template-columns': selectedValue === 'option2' ? 'repeat(5, 1fr)' : 'repeat(7, 1fr)', 'grid-template-rows': calendarView === 'Month' ? 'repeat(6, 1fr)' : 'auto'}"> 
         <mat-card 
             *ngFor="let date of monthDates" 
             class="date-card" 
@@ -49,7 +52,14 @@
         >
             <h3 class="card-date" [ngClass]="{'current-date':date.toDateString() === currentDate.toDateString()}">{{date.getDate()}}</h3>
             <div *ngFor="let event of events;" style="padding: 0px 10px;">
-                <div *ngIf="event.date === date.toDateString()" class="event-header" (click)="openForEventDetail(event, $event)">{{event.eventName}}</div>
+                <div *ngIf="event.date === date.toDateString()" class="event-header">
+                    {{event.eventName}}
+                    <div class="hover-content">
+                        <button mat-raised-button  (click)="openEventForm($event, event)">Update</button>
+                        <button mat-raised-button color="warn" (click)="deleteEvent($event, event.id)">Delete</button>
+                        <button mat-raised-button color="primary" (click)="openForEventDetail(event, $event)">View</button>
+                    </div>
+                </div>
             </div>
         </mat-card>
     </div>

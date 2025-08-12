@@ -1,5 +1,5 @@
 export interface FestivalEvent{
-    id?:number;
+    id:number;
     eventName: string;
     eventType: string
     desc: string

@@ -83,6 +83,48 @@
       "desc": "Shravana, Shukla Saptami",
       "date": "Thu Jul 31 2025",
       "id": "3281"
+    },
+    {
+      "id": "0891",
+      "eventName": "Autumnal Equinox",
+      "eventType": "Religional Festival",
+      "desc": "Astronomy Event ",
+      "date": "Mon Sep 22 2025"
+    },
+    {
+      "id": "96d2",
+      "eventName": "Durga Ashtami",
+      "eventType": "Religional Festival",
+      "desc": "Ashwina, Shukla Ashtami",
+      "date": "Tue Sep 30 2025"
+    },
+    {
+      "id": "f231",
+      "eventName": "Maha Navami",
+      "eventType": "Religional Festival",
+      "desc": "Ashwina, Shukla Navami",
+      "date": "Wed Oct 01 2025"
+    },
+    {
+      "id": "6779",
+      "eventName": "Gandhi Jayanti",
+      "eventType": "Government Holiday",
+      "desc": "Fixed day in Gregorian calendar, Birthday",
+      "date": "Thu Oct 02 2025"
+    },
+    {
+      "id": "8da8",
+      "eventName": "Meerabai Jayanti",
+      "eventType": "Religional Festival",
+      "desc": "Ashwina, Shukla Purnim",
+      "date": "Tue Oct 07 2025"
+    },
+    {
+      "id": "6014",
+      "eventName": "Dussehra",
+      "eventType": "Government Holiday",
+      "desc": "Celebration of the victory of good over evil, including the burning of Ravana effigies and various regional traditions",
+      "date": "Sun Oct 05 2025"
     }
   ]
 }
