@@ -8,7 +8,7 @@ import { MatCardModule} from '@angular/material/card'
 import {MatIconModule} from '@angular/material/icon'
 import {MatButtonModule} from '@angular/material/button'
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { EventFormComponent } from './event-form/event-form.component';
+import { EventDetailsComponent } from './event-details/event-details.component';
 import { MatDialogModule } from '@angular/material/dialog'
 import {MatSelectModule} from '@angular/material/select'
 import {MatInputModule} from '@angular/material/input';
@@ -16,14 +16,18 @@ import { MatDatepickerModule} from '@angular/material/datepicker'
 import { FormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { EventDetailsComponent } from './event-details/event-details.component';
+import { EventFormComponent } from './event-form/event-form.component';
+import { EventListComponent } from './event-list/event-list.component';
+import { MatTableModule} from '@angular/material/table'
+import { MatRadioModule } from '@angular/material/radio'
 
 @NgModule({
   declarations: [
     AppComponent,
     CalendarComponent,
-    EventFormComponent,
     EventDetailsComponent,
+    EventFormComponent,
+    EventListComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +45,8 @@ import { EventDetailsComponent } from './event-details/event-details.component';
     FormsModule,
     MatFormFieldModule,
     BrowserAnimationsModule,
+    MatTableModule,
+    MatRadioModule
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]

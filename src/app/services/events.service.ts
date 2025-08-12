@@ -17,5 +17,13 @@ export class EventsService {
   createEvent(eventData: FestivalEvent):Observable<FestivalEvent>{
     return this.http.post<FestivalEvent>(this.apiUrl, eventData);
   }
+
+  updateEvent(eventId:string ,eventData: FestivalEvent):Observable<FestivalEvent>{
+    return this.http.put<FestivalEvent>(`${this.apiUrl}/${eventId}`, eventData);
+  }
+
+  deleteEvent(eventId: number):Observable<void>{
+    return this.http.delete<void>(`${this.apiUrl}/${eventId}`);
+  }
 }
 

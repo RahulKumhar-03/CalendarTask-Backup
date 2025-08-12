@@ -8,19 +8,15 @@ import { FestivalEvent } from '../event.interface';
   styleUrls: ['./event-form.component.css']
 })
 export class EventFormComponent {
-  event: FestivalEvent = {
-    eventName:'',
-    eventType:'',
-    desc:'',
-    date:new Date().toDateString()
+  event: FestivalEvent
+  isEditMode: boolean = false;
+
+  constructor(public dialogRef: MatDialogRef<EventFormComponent>, @Inject(MAT_DIALOG_DATA) public data: FestivalEvent){
+    this.event = {...this.data}
   }
 
-  constructor(public dialogRef: MatDialogRef<EventFormComponent>){}
-
   onSubmit():void{
-    this.dialogRef.close({
-      ...this.event, 
-      date: new Date(this.event.date).toDateString()
+    this.dialogRef.close({...this.event, date: new Date(this.event.date).toDateString()
     });
   }
   onCancel(){
